@@ -1,4 +1,7 @@
 <div class="devStats plainBorder">
+	<button ng-click="login()">login</button>
+	<button ng-click="getUserInfo()">getUserInfo</button>
+	
 	<h2>Dev Stats</h2>
 	<!-- device data -->
 	Device Ready: <span class="deviceReadyStat">{{devStats.deviceReady}}</span>
@@ -24,7 +27,7 @@
 <div id="container2">
 	<div class="jsConsole"></div>
 	<div class="buttonArea">
-		<button id="logoutButton" type="button">log out</button>
+		<button ng-click="logout()" id="logoutButton" type="button">log out</button>
 	</div>
 </div>
 <br>
