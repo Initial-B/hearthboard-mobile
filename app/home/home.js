@@ -1,30 +1,23 @@
 'use strict';
 
-angular.module('hearthboard.home', ['ngRoute'])
-
-.config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/home', {
-    templateUrl: 'home/home.html',
-    controller: 'HomeCtrl'
-  });
-}])
+angular.module('hearthboard.home', [])
 
 .controller('HomeCtrl', ['$scope', '$http', function($scope, $http) {
 	$scope.login = function(){
-		$http.post('http://apsis.me/Hearthboard/lib/SessionUtil/SessionUtil_cc.php',
-			{//data
+		$http({
+			url: 'http://apsis.me/Hearthboard/lib/SessionUtil/SessionUtil_cc.php',
+			method: 'POST',
+			//withCredentials: true,
+			data: {
 				action: 'login',
 				userID: 'Brady',
 				password: 'pass'
-			},
-			{//config
-				withCredentials: true,
-				headers: { 'Content-Type': 'application/x-www-form-urlencoded;'}
 			}
-		).success(function(data, status){
+		}).success(function(data, status){
 			console.log('responseMessage: ' + data['responseMessage'] + ' sessionID: ' + data['sessionID']);
+			$scope.loginResponse = data;
+			$scope.responseStatus = status;
 		});
-		
 	};
 	$scope.logout = function(){
 	
@@ -35,7 +28,6 @@ angular.module('hearthboard.home', ['ngRoute'])
 	//	$http.post('ht
 	
 	};
-	
 	
 	$scope.devStats = {
 		deviceReady: false,

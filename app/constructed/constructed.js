@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hearthboard.constructed', ['ngRoute'])
+angular.module('hearthboard.constructed', [])
 
 .controller('ConstructedCtrl', [function() {
 

@@ -16,23 +16,25 @@
 </head>
 <body>
   <ul class="menu">
-	<li><a href="#/home">home</a></li>
-    <li><a href="#/constructed-matches">constructed</a></li>
-    <li><a href="#/arena-matches">arena</a></li>
+	<li><a ui-sref="home">Home</a></li>
+    <li><a ui-sref="constructed">Constructed</a></li>
+    <li><a ui-sref="arena">Arena</a></li>
   </ul>
 
   <!--[if lt IE 7]>
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <div ng-view></div>
-
+  <div ui-view></div>
+  <br>
+  <br>
   <div>hearthboard app: v<span app-version></span></div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
   <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script src="bower_components/angular-route/angular-route.js"></script>
   <script src="app.js"></script>
   <script src="home/home.js"></script>

@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('hearthboard.arena', ['ngRoute'])
+angular.module('hearthboard.arena', [])
 
 .controller('ArenaCtrl', [function() {
 

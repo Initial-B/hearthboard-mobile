@@ -1,8 +1,10 @@
 <div class="devStats plainBorder">
 	<button ng-click="login()">login</button>
 	<button ng-click="getUserInfo()">getUserInfo</button>
-	
-	<h2>Dev Stats</h2>
+	<br><br>
+	<p>login response: {{responseStatus}}</p>
+	<p>{{loginResponse}}</p>
+	<h3>Dev Stats</h3>
 	<!-- device data -->
 	Device Ready: <span class="deviceReadyStat">{{devStats.deviceReady}}</span>
 	<br>
