@@ -39,7 +39,21 @@ hearthboardApp.config(['$stateProvider','$urlRouterProvider',
 			}
 		});
   }
+])
+.run(['$rootScope',
+	function($rootScope){
+		$rootScope.$on('$stateChangeStart', function(event, toState, toParams){
+			var requireLogin = toState.data.requireLogin;
+			// if state requires login and currentUser is undefined, show login prompt
+			if(requireLogin && typeof $rootScope.currentUser === 'undefined'){
+				event.preventDefault();
+				
+			
+			}
+		});
+	}
 ]);
+
 /*
 hearthboardApp.config(['$routeProvider',
   function($routeProvider) {

@@ -2,22 +2,15 @@
 
 angular.module('hearthboard.home', [])
 
-.controller('HomeCtrl', ['$scope', '$http', function($scope, $http) {
+.controller('HomeCtrl', ['$scope', '$http', 'userAPI', function($scope, $http, userAPI) {
 	$scope.login = function(){
-		$http({
-			url: 'http://apsis.me/Hearthboard/lib/SessionUtil/SessionUtil_cc.php',
-			method: 'POST',
-			//withCredentials: true,
-			data: {
-				action: 'login',
-				userID: 'Brady',
-				password: 'pass'
+		userAPI.login('Brady','pass').success(
+			function(data, status){
+				console.log('responseMessage: ' + data['responseMessage'] + ' sessionID: ' + data['sessionID']);
+				$scope.loginResponse = data;
+				$scope.responseStatus = status;			
 			}
-		}).success(function(data, status){
-			console.log('responseMessage: ' + data['responseMessage'] + ' sessionID: ' + data['sessionID']);
-			$scope.loginResponse = data;
-			$scope.responseStatus = status;
-		});
+		);
 	};
 	$scope.logout = function(){
 	
@@ -25,8 +18,8 @@ angular.module('hearthboard.home', [])
 	
 	
 	$scope.getUserInfo = function(){
-	//	$http.post('ht
-	
+		userAPI.getUserInfo('Brady',$scope.sessionID);
+		//TODO: do something with results
 	};
 	
 	$scope.devStats = {
