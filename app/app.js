@@ -2,9 +2,10 @@
 
 // Declare app level module which depends on views, and components
 var hearthboardApp = angular.module('hearthboard', [
- // 'ngRoute',
+  'ui.bootstrap',
   'ui.router',
   'hearthboard.home',
+  'hearthboard.login',
   'hearthboard.constructed',
   'hearthboard.arena',
   'hearthboard.version'
@@ -40,35 +41,19 @@ hearthboardApp.config(['$stateProvider','$urlRouterProvider',
 		});
   }
 ])
-.run(['$rootScope',
-	function($rootScope){
+.run(['$rootScope', '$state', 'loginModal',
+	function($rootScope, $state, loginModal){
 		$rootScope.$on('$stateChangeStart', function(event, toState, toParams){
 			var requireLogin = toState.data.requireLogin;
 			// if state requires login and currentUser is undefined, show login prompt
 			if(requireLogin && typeof $rootScope.currentUser === 'undefined'){
 				event.preventDefault();
-				
-			
+				loginModal().then(function(){
+					return $state.go(toState.name, toParams);
+				}).catch(function(){
+					return $state.go('home');
+				});
 			}
 		});
 	}
 ]);
-
-/*
-hearthboardApp.config(['$routeProvider',
-  function($routeProvider) {
-    $routeProvider
-		.when('/constructed-matches', {
-			templateUrl: 'constructed/constructed-matches.html',
-			controller: 'ConstructedCtrl'
-		})
-	    .when('/arena-matches', {
-			templateUrl: 'arena/arena-matches.html',
-			controller: 'ArenaCtrl'
-		})
-		.otherwise({
-			redirectTo: '/home'
-		});
-  }
-]);
-*/
