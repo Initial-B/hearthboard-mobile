@@ -1,8 +1,11 @@
 <div>
   <form ng-submit="LoginModalCtrl.submit(_userID, _password)">
-    <input type="text" ng-model="_userID" />
-    <input type="password" ng-model="_password" />
-    <button>Submit</button>
+    Username: <input type="text" ng-model="_userID" />
+	<br>
+    Password: <input type="password" ng-model="_password" />
+    <br>
+	<button>Submit</button>
   </form>
+  <br>
   <button ng-click="LoginModalCtrl.cancel()">Cancel</button>
 </div>

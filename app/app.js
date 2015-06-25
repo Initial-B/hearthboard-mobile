@@ -41,6 +41,42 @@ hearthboardApp.config(['$stateProvider','$urlRouterProvider',
 		});
   }
 ])
+//brewhouse unauthorized request implementation (need to edit routing/states before testing this)
+/*
+.config(['$httpProvider', function ($httpProvider) {
+
+  $httpProvider.interceptors.push(function ($timeout, $q, $injector) {
+    var loginModal, $http, $state;
+
+    // this trick must be done so that we don't receive
+    // `Uncaught Error: [$injector:cdep] Circular dependency found`
+    $timeout(function () {
+      loginModal = $injector.get('loginModal');
+      $http = $injector.get('$http');
+      $state = $injector.get('$state');
+    });
+
+    return {
+      responseError: function (rejection) {
+        if (rejection.status !== 401) {
+          return rejection;
+        }
+        var deferred = $q.defer();
+        loginModal()
+          .then(function () {
+            deferred.resolve( $http(rejection.config) );
+          })
+          .catch(function () {
+            $state.go('home');
+            deferred.reject(rejection);
+          });
+        return deferred.promise;
+      }
+    };
+  });
+
+}])
+*/
 .run(['$rootScope', '$state', 'loginModal',
 	function($rootScope, $state, loginModal){
 		$rootScope.$on('$stateChangeStart', function(event, toState, toParams){
