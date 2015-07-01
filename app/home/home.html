@@ -1,36 +1,11 @@
-<div class="devStats plainBorder">
-	<button ng-click="login()">login</button>
-	<button ng-click="getUserInfo()">getUserInfo</button>
-	<br><br>
-	<p>login response: {{responseStatus}}</p>
-	<p>{{loginResponse}}</p>
-	<h3>Dev Stats</h3>
-	<!-- device data -->
-	Device Ready: <span class="deviceReadyStat">{{devStats.deviceReady}}</span>
-	<br>
-	User Agent: <span class="userAgentStat">{{devStats.userAgent}}</span>
-	<br>
-	Screen Dimensions (pixels): <span class="screenDimensionsStat">{{devStats.screenDimensions}}</span>
-	<br>
-	Window Dimensions (pixels): <span class="windowDimensionsStat">{{devStats.windowDimensions}}</span>
-	<br>
-	Device Orientation: <span class="deviceOrientationStat">{{devStats.deviceOrientation}}</span>
-	<br>
-	<br>
-	<!-- user data -->
-	UserID: <span class="userIDStat">{{devStats.userID}}</span>
-	<br>
-	User Email: <span class="userEmailStat">{{devStats.userEmail}}</span>
-	<br>
-	Constructed w/l: <span class="constructedWLStat">{{devStats.constructedWL}}</span>
-	<br>
-	Arena w/l: <span class="arenaWLStat">{{devStats.arenaWL}}</span>
-</div>
-<div id="container2">
-	<div class="jsConsole"></div>
-	<div class="buttonArea">
-		<button ng-click="logout()" id="logoutButton" type="button">log out</button>
-	</div>
-</div>
+<div>userID: {{userID}}</div>
+<div>sessionID: {{sessionID}}</div>
+<br>
+<br>
+<ng-include src="'home/devStats.html'" ng-if="isLoggedIn"></ng-include>
+<ng-include src="'login/loginForm.html'" ng-if="!isLoggedIn"></ng-include>
+<ng-include ng-if="isLoggedIn">
+	<button ng-click="logout()" id="logoutButton" type="button">log out</button>
+</ng-include>
 <br>
 <br>

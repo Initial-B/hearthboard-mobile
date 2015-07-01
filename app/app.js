@@ -4,7 +4,6 @@
 var hearthboardApp = angular.module('hearthboard', [
   'ui.bootstrap',
   'ui.router',
-  'hearthboard.home',
   'hearthboard.login',
   'hearthboard.constructed',
   'hearthboard.arena',
@@ -77,12 +76,12 @@ hearthboardApp.config(['$stateProvider','$urlRouterProvider',
 
 }])
 */
-.run(['$rootScope', '$state', 'loginModal',
-	function($rootScope, $state, loginModal){
+.run(['$rootScope', '$state', 'loginModal', 'userAPI',
+	function($rootScope, $state, loginModal, userAPI){
 		$rootScope.$on('$stateChangeStart', function(event, toState, toParams){
 			var requireLogin = toState.data.requireLogin;
 			// if state requires login and currentUser is undefined, show login prompt
-			if(requireLogin && typeof $rootScope.currentUser === 'undefined'){
+			if(requireLogin && userAPI.getCurrentUser() === null){
 				event.preventDefault();
 				loginModal().then(function(){
 					return $state.go(toState.name, toParams);
