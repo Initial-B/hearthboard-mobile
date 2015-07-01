@@ -2,7 +2,7 @@
 
 angular.module('hearthboard.constructed', [])
 
-.controller('ConstructedCtrl', ['$scope', function($scope) {
+.controller('ConstructedCtrl', ['$scope', 'gamesAPI', function($scope, gamesAPI) {
 	$scope.constructedEntry = {
 		deckID: '',
 		opponentClass: '',

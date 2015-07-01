@@ -2,7 +2,7 @@
 
 angular.module('hearthboard')
 
-.controller('HomeCtrl', ['$scope', '$http', 'userAPI', function($scope, $http, userAPI) {
+.controller('HomeCtrl', ['$scope', 'userAPI', function($scope, userAPI) {
 	//test
 	$scope.userID = userAPI.getUserID();
 	$scope.sessionID = userAPI.getSessionID();
