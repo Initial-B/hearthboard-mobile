@@ -2,6 +2,17 @@
 
 angular.module('hearthboard.constructed', [])
 
-.controller('ConstructedCtrl', [function() {
-
+.controller('ConstructedCtrl', ['$scope', function($scope) {
+	$scope.constructedEntry = {
+		deckID: '',
+		opponentClass: '',
+		coin: false,
+		result: '',
+		comments: ''
+	};
+	
+	$scope.submitConstructedMatch = function(entry){
+		
+		
+	};
 }]);

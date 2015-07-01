@@ -1,5 +1,3 @@
 {
-  "directory": "app/bower_components",
-  "proxy":"http://u1j469:%7C%29esp0tisM@ironport3.geico.net:80",
-  "https-proxy":"http://u1j469:%7C%29esp0tisM@ironport3.geico.net:80"
+  "directory": "app/bower_components"
 }

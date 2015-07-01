@@ -81,7 +81,7 @@ hearthboardApp.config(['$stateProvider','$urlRouterProvider',
 		$rootScope.$on('$stateChangeStart', function(event, toState, toParams){
 			var requireLogin = toState.data.requireLogin;
 			// if state requires login and currentUser is undefined, show login prompt
-			if(requireLogin && userAPI.getCurrentUser() === null){
+			if(requireLogin && userAPI.getUserID() === null){
 				event.preventDefault();
 				loginModal().then(function(){
 					return $state.go(toState.name, toParams);

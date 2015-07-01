@@ -1,1 +1,13 @@
 <p>view: constructed-matches</p>
+<form novalidate class="constructedQuickEntryForm">
+	DeckID: <input type="text" ng-model="constructedEntry.deckID"/><br/>
+	Opponent Class: <input type="text" ng-model="constructedEntry.opponentClass"/><br/>
+	<!-- figure out how to do this crap -->
+	<!--
+	<dropdown placeholder="Select Class..." list="classes" selected="constructedEntry.opponentClass" property="className"></dropdown>
+	-->
+	<br/>
+	<br/>
+	<input type="button" ng-click="reset()" value="Reset" />
+    <input type="submit" ng-click="submitConstructedMatch(constructedEntry)" value="Save" />
+</form>
