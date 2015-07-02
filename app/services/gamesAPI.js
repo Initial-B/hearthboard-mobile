@@ -6,14 +6,26 @@
 	
 	angular.module('hearthboard').factory(serviceID, ['$http', 'userAPI', gamesAPI]);
 	function gamesAPI($http, userAPI){
+		
 		function submitConstructedMatch(match){
+			/*
+				required: ownClass, opponentClass, coin, result
+				- Controller can autofill ownClass on deck selection, and specify defaults for all values
+			*/
+		
 			return $http({
 				url: 'http://apsis.me/Hearthboard/lib/Constructed/Constructed_cc.php',
 				method: 'POST',
 				data: {
 					action: 'submitConstructedMatch',
-					userID: ,
-					sessionID: ,
+					userID: userAPI.getUserID(),
+					sessionID: userAPI.getSessionID(),
+					ownClass: match.ownClass,
+					deckID: (match.deckID ? match.deckID : ''),
+					opponentClass: match.opponentClass,
+					coin: match.coin,
+					result: match.result,
+					comments: (match.comments ? match.comments : ''),
 				}
 			}).then(
 				function(response){
