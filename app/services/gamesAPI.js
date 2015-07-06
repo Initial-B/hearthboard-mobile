@@ -26,6 +26,7 @@
 					coin: match.coin,
 					result: match.result,
 					comments: (match.comments ? match.comments : ''),
+					seasonID: (match.seasonID ? match.seasonID : 0)
 				}
 			}).then(
 				function(response){

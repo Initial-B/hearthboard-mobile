@@ -9,7 +9,8 @@ angular.module('hearthboard.constructed', [])
 		opponentClass: '',
 		coin: false,
 		result: '',
-		comments: ''
+		comments: '',
+		seasonID: 0
 	};
 	
 	$scope.submitConstructedMatch = function(entry){
