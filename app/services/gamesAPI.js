@@ -12,7 +12,7 @@
 				required: ownClass, opponentClass, coin, result
 				- Controller can autofill ownClass on deck selection, and specify defaults for all values
 			*/
-		
+			console.log('submitting constructed match with ownClass: ' + match.ownClass + ' opponentClass: ' + match.opponentClass);
 			return $http({
 				url: 'http://apsis.me/Hearthboard/lib/Constructed/Constructed_cc.php',
 				method: 'POST',
@@ -30,8 +30,9 @@
 				}
 			}).then(
 				function(response){
+					console.log('server response: ' + JSON.stringify(response.data));
 					if(response.data['responseCode'] == 'success'){
-
+						//do something? or handle in calling controller
 					}
 					return response;
 				}

@@ -14,7 +14,6 @@ angular.module('hearthboard.constructed', [])
 	};
 	
 	$scope.submitConstructedMatch = function(entry){
-		
-		
+		gamesAPI.submitConstructedMatch(entry);
 	};
 }]);
