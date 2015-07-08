@@ -12,14 +12,16 @@
 				required: ownClass, opponentClass, coin, result
 				- Controller can autofill ownClass on deck selection, and specify defaults for all values
 			*/
-			console.log('submitting constructed match with ownClass: ' + match.ownClass + ' opponentClass: ' + match.opponentClass);
+			var userID = userAPI.getUserID();
+			var sessionID = userAPI.getSessionID();
+			console.log('submitting constructed match with userID: ' + userID + ' sessionID: ' + sessionID + ' ownClass: ' + match.ownClass + ' opponentClass: ' + match.opponentClass);
 			return $http({
 				url: 'http://apsis.me/Hearthboard/lib/Constructed/Constructed_cc.php',
 				method: 'POST',
 				data: {
 					action: 'submitConstructedMatch',
-					userID: userAPI.getUserID(),
-					sessionID: userAPI.getSessionID(),
+					userID: userID,
+					sessionID: sessionID,
 					ownClass: match.ownClass,
 					deckID: (match.deckID ? match.deckID : ''),
 					opponentClass: match.opponentClass,
