@@ -33,8 +33,11 @@
 			}).then(
 				function(response){
 					console.log('server response: ' + JSON.stringify(response.data));
-					if(response.data['responseCode'] == 'success'){
-						//do something? or handle in calling controller
+					if(response.data['newSessionID']){
+						userAPI.setSessionID(response.data['newSessionID']);
+						if(response.data['responseCode'] == 'success'){
+							//do something? or handle in calling controller
+						}
 					}
 					return response;
 				}
