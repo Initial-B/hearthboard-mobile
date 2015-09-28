@@ -13,6 +13,16 @@ angular.module('hearthboard.constructed', [])
 		seasonID: 0
 	};
 	
+	$scope.getRecentMatches = function(){
+		gamesAPI.getConstructedMatches(0).then(
+			function(response){
+				if(response.data['responseCode'] == 'success'){
+					$scope.recentMatchesTest = JSON.stringify(response.data['constructedMatches']);
+				}//else display some error message
+			}
+		);
+	};
+	
 	$scope.submitConstructedMatch = function(entry){
 		gamesAPI.submitConstructedMatch(entry);
 	};

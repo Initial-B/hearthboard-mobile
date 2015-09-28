@@ -49,8 +49,43 @@
 			);
 		};
 		
+		//returns the current user's constructed match history for the specified season
+		//	if seasonID is 0, returns all matches
+		function getConstructedMatches(seasonID){
+			var userID = userAPI.getUserID();
+			var sessionID = userAPI.getSessionID();
+			console.log('getting constructed matches for userID: ' + userID  + ' seasonID: ' + seasonID + ' sessionID: ' + sessionID);
+			return $http({
+				url: 'http://apsis.me/Hearthboard/lib/Constructed/Constructed_cc.php',
+				method: 'POST',
+				data: {
+					action: 'getConstructedMatches',
+					userID: userID,
+					sessionID: sessionID,
+					seasonID: seasonID
+				}
+			}).then(
+				function(response){
+					console.log('server response: ' + JSON.stringify(response.data));
+					if(response.data['newSessionID']){
+						userAPI.setSessionID(response.data['newSessionID']);
+						if(response.data['responseCode'] == 'success'){
+							//do something? or handle in calling controller
+						}
+					}
+					return response;
+				}
+			).catch(
+				function(response) {
+					console.log('status: ' + response.status + ' data: ' + JSON.stringify(response.data));
+					return response;
+				}
+			);
+		};
+		
 		return{
-			submitConstructedMatch: submitConstructedMatch
+			submitConstructedMatch: submitConstructedMatch,
+			getConstructedMatches: getConstructedMatches
 		}
 	};
 })();
