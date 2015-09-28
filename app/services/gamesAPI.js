@@ -62,7 +62,7 @@
 					action: 'getConstructedMatches',
 					userID: userID,
 					sessionID: sessionID,
-					seasonID: seasonID
+					seasonID: (seasonID ? seasonID : 0)
 				}
 			}).then(
 				function(response){
