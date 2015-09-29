@@ -1,6 +1,28 @@
 <p>recent matches</p>
 <button ng-click="getRecentMatches()">Get Recent Matches</button>
-<br/>
+<br/><br/>
+<table class="hsMatchesTable">
+  <tr>
+  <th>gameID</th>
+  <th>timestamp</th>
+  <th>own class</th>
+  <th>opponent class</th>
+  <th>deckID</th>
+  <th>coin</th>
+  <th>win?</th>
+  <th>comments</th>
+  </tr>
+  <tr ng-repeat="x in recentMatches">
+    <td>{{ x.gameID }}</td>
+    <td>{{ x.played_ts }}</td>
+	<td>{{ x.ownClass }}</td>
+	<td>{{ x.opponentClass }}</td>
+	<td>{{ x.deckID }}</td>
+	<td>{{ x.coin }}</td>
+	<td>{{ x.win }}</td>
+	<td>{{ x.comments }}</td>
+  </tr>
+</table>
 <div>{{recentMatchesTest}}</div>
 <hr/>
 <p>submit quick match</p>

@@ -17,7 +17,7 @@ angular.module('hearthboard.constructed', [])
 		gamesAPI.getConstructedMatches(0).then(
 			function(response){
 				if(response.data['responseCode'] == 'success'){
-					$scope.recentMatchesTest = JSON.stringify(response.data['constructedMatches']);
+					$scope.recentMatches = response.data['constructedMatches'];
 				}//else display some error message
 			}
 		);
