@@ -5,6 +5,7 @@ angular.module('hearthboard')
 .controller('HomeCtrl', ['$scope', 'userAPI', function($scope, userAPI) {
 	//test
 	$scope.userID = userAPI.getUserID();
+	$scope.lastUserID = userAPI.getLastUserID();
 	$scope.sessionID = userAPI.getSessionID();
 
 	$scope.isLoggedIn = userAPI.isLoggedIn();
@@ -24,7 +25,7 @@ angular.module('hearthboard')
 		);
 	};
 	$scope.logout = function(){
-		userAPI.logout().then(
+		userAPI.logout(userAPI.getUserID(), userAPI.getSessionID()).then(
 			function(){
 				location.reload();
 			}
@@ -32,7 +33,7 @@ angular.module('hearthboard')
 	};
 	
 	$scope.getUserInfo = function(){
-		userAPI.getUserInfo(userAPI.getUserID(),$scope.sessionID).then(
+		userAPI.getUserInfo($scope.userID, $scope.sessionID).then(
 			function(data, status){
 				//TODO: do something with results involving $scope.devStats
 			}

@@ -11,20 +11,34 @@
 			window.localStorage[ns + '.userID'] : '');
 		var sessionID = (window.localStorage[ns + '.sessionID'] ?
 			window.localStorage[ns + '.sessionID'] : '');
-			
+		//last userID, used to pre-fill login field
+		var lastUserID = (window.localStorage[ns + '.lastUserID'] ? 
+			window.localStorage[ns + '.lastUserID'] : '');
+		
+		
 		function getUserID(){return userID;};
-		function getSessionID(){return sessionID;};
 		function setUserID(uID){
 			userID = uID;
 			window.localStorage[ns + '.userID'] = uID;
 		};
+		
+		function getSessionID(){return sessionID;};
 		function setSessionID(sID){
 			sessionID = sID;
 			window.localStorage[ns + '.sessionID'] = sID;
 		};
+		
+		function getLastUserID(){return lastUserID;};
+		function setLastUserID(uID){
+			lastUserID = uID;
+			window.localStorage[ns + '.lastUserID'] = uID;
+		};
+		
 		function isLoggedIn(){
 			return !(getUserID()==='' || getSessionID()==='');
-		}
+		};
+		
+		
 
 		function login(uID, password){
 			//console.log('entered userAPI with userID: ' + uID + ' password: ' + password);
@@ -41,6 +55,7 @@
 				function(response){
 					if(response.data['responseCode'] == 'success'){
 						setUserID(uID);
+						setLastUserID(uID);
 						setSessionID(response.data['sessionID']);
 					}
 					return response;
@@ -53,6 +68,7 @@
 			);
 		};
 		
+		//end current user session and set userID to empty string
 		function logout(uID, sID){
 			return $http({
 				url: 'http://apsis.me/Hearthboard/lib/SessionUtil/SessionUtil_cc.php',
@@ -66,6 +82,7 @@
 			}).then(
 				function(response) {
 					setSessionID('');
+					setUserID('');
 					console.log('logout response: ' + response.data);
 					return response;
 				}
@@ -93,8 +110,10 @@
 		
 		return{
 			getUserID: getUserID,
-			getSessionID: getSessionID,
 			setUserID: setUserID,
+			getLastUserID: getLastUserID,
+			setLastUserID: setLastUserID,
+			getSessionID: getSessionID,
 			setSessionID: setSessionID,
 			isLoggedIn: isLoggedIn,
 			login: login,

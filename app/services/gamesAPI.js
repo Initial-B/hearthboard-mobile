@@ -14,7 +14,7 @@
 			*/
 			var userID = userAPI.getUserID();
 			var sessionID = userAPI.getSessionID();
-			console.log('submitting constructed match with userID: ' + userID + ' sessionID: ' + sessionID + ' ownClass: ' + match.ownClass + ' opponentClass: ' + match.opponentClass);
+			console.log('submitting constructed match with userID: ' + userID + ' sessionID: ' + sessionID + ' ownClass: ' + match.ownClass + ' opponentClass: ' + match.opponentClass + ' coin: ' + match.coin + ' result: ' + match.result);
 			return $http({
 				url: 'http://apsis.me/Hearthboard/lib/Constructed/Constructed_cc.php',
 				method: 'POST',
