@@ -2,8 +2,8 @@
 
 angular.module('hearthboard.constructed', [])
 
-.controller('ConstructedCtrl', ['$scope', 'gamesAPI', 'constants', 
-	function($scope, gamesAPI, constants) {
+.controller('ConstructedCtrl', ['$scope', 'gamesAPI',
+	function($scope, gamesAPI) {
 		$scope.constructedEntry = {
 			ownClass: '',
 			deckID: '',
@@ -13,7 +13,7 @@ angular.module('hearthboard.constructed', [])
 			comments: '',
 			seasonID: 0
 		};
-		$scope.hsClasses = constants.HS_CLASSES;
+		$scope.hsClasses = gamesAPI.HS_CLASSES;
 		
 		$scope.getRecentMatches = function(){
 			gamesAPI.getConstructedMatches(0).then(

@@ -1,11 +1,4 @@
 <p>recent matches</p>
-<!--test -->
-<table class="hsClassesTest">
-  <tr ng-repeat="x in hsClasses">
-    <td>{{x}}</td>
-  </tr>
-</table>
-<!-- end test-->
 <button ng-click="getRecentMatches()">Get Recent Matches</button>
 <br/><br/>
 <table class="hsMatchesTable">
@@ -36,25 +29,16 @@
 <form novalidate class="constructedQuickEntryForm">
 	<label for="ownClassSelect"> Own Class: </label>
     <select name="ownClassSelect" id="ownClassSelect" ng-model="constructedEntry.ownClass">
-      <option value="">---Please select---</option> <!-- not selected / blank option -->
-      <!-- <option value="{{data.option1}}">Option 1</option> --><!-- interpolation example -->
-      <!-- TODO: use interpolation to read class list from constant (same for opponent class -->
-	  <option value="Druid">Druid</option>
-	  <option value="Hunter">Hunter</option>
-	  <option value="Mage">Mage</option>
-	  <option value="Paladin">Paladin</option>
-	  <option value="Priest">Priest</option>
-	  <option value="Rogue">Rogue</option>
-	  <option value="Shaman">Shaman</option>
-	  <option value="Warlock">Warlock</option>
-	  <option value="Warrior">Warrior</option>
+      <option value="">---Please select---</option>
+	  <option ng-repeat="x in hsClasses" value="{{x}}">{{x}}</option>
     </select><br>
-	
-	
 	DeckID: <input type="text" ng-model="constructedEntry.deckID"/>
 	<br/>
-	Opponent Class: <input type="text" ng-model="constructedEntry.opponentClass"/>
-	<br/>
+	<label for="opponentClassSelect"> Opponent Class: </label>
+    <select name="opponentClassSelect" id="opponentClassSelect" ng-model="constructedEntry.opponentClass">
+      <option value="">---Please select---</option>
+	  <option ng-repeat="x in hsClasses" value="{{x}}">{{x}}</option>
+    </select><br>
 	<br/>
 	<input type="radio" ng-model="constructedEntry.result" value="win" />win
 	<input type="radio" ng-model="constructedEntry.result" value="loss" />loss<br/>

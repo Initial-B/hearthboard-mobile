@@ -7,6 +7,12 @@
 	angular.module('hearthboard').factory(serviceID, ['$http', 'userAPI', gamesAPI]);
 	function gamesAPI($http, userAPI){
 		
+		var HS_CLASSES = [
+				'Druid','Hunter','Mage',
+				'Paladin','Priest','Rogue',
+				'Shaman','Warlock','Warrior'
+			];
+			
 		function submitConstructedMatch(match){
 			/*
 				required: ownClass, opponentClass, coin, result
@@ -84,6 +90,7 @@
 		};
 		
 		return{
+			HS_CLASSES: HS_CLASSES,
 			submitConstructedMatch: submitConstructedMatch,
 			getConstructedMatches: getConstructedMatches
 		}
